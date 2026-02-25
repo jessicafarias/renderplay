@@ -9266,34 +9266,34 @@
   ],
   "images": [
     {
-      "uri": "textures/Boden_baseColor.png"
+      "uri": "textures/Boden_baseColor.webp"
     },
     {
-      "uri": "textures/Boden_metallicRoughness.png"
+      "uri": "textures/Boden_metallicRoughness.webp"
     },
     {
-      "uri": "textures/Boden_normal.png"
+      "uri": "textures/Boden_normal.webp"
     },
     {
-      "uri": "textures/body_baseColor.png"
+      "uri": "textures/body_baseColor.webp"
     },
     {
-      "uri": "textures/body_metallicRoughness.png"
+      "uri": "textures/body_metallicRoughness.webp"
     },
     {
-      "uri": "textures/body_emissive.png"
+      "uri": "textures/body_emissive.webp"
     },
     {
-      "uri": "textures/body_normal.png"
+      "uri": "textures/body_normal.webp"
     },
     {
-      "uri": "textures/material_baseColor.png"
+      "uri": "textures/material_baseColor.webp"
     },
     {
-      "uri": "textures/material_metallicRoughness.png"
+      "uri": "textures/material_metallicRoughness.webp"
     },
     {
-      "uri": "textures/material_normal.png"
+      "uri": "textures/material_normal.webp"
     }
   ],
   "materials": [
