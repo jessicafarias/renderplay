@@ -24,3 +24,21 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+@layer utilities {
+  .text-shadow-glow-title {
+    text-shadow: 0 0 10px #00ff2a, 0 0 20px #00ff2a;
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 10px #00ff2a;
+  }
+
+  .font-courier {
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .canvas-glow {
+    border: 1px solid #00ff2a;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1);
+  }
+}

@@ -17,22 +17,12 @@ export default function ModelViewer() {
         <div className="absolute bottom-0 right-0 w-10 h-10 border-b-[3px] border-r-[3px] border-[#00ff2a] z-10" />
 
         {/* HUD text */}
-        <div
-          className="absolute top-2.5 right-12 font-mono text-xs z-10"
-          style={{
-            color: "#00ff2a",
-            textShadow: "0 0 10px #00ff2a",
-          }}
-        >
+        <div className="absolute top-2.5 right-12 font-mono text-xs z-10 text-[#00ff2a] text-shadow-glow">
           [TRACKING...]
         </div>
 
         <Canvas
-          className="w-full h-full"
-          style={{
-            border: "1px solid #00ff2a",
-            boxShadow: "0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1)",
-          }}
+          className="w-full h-full canvas-glow"
           camera={{ position: [0, 2, 5] }}
         >
           <ambientLight intensity={1} />
