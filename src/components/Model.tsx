@@ -3,8 +3,13 @@
 import { useGLTF } from "@react-three/drei";
 import { useEffect } from "react";
 
-export default function Model() {
-  const gltf = useGLTF("/models/scene.gltf");
+interface ModelProps {
+  path: string;
+  scale: number;
+}
+
+export default function Model({ path, scale }: ModelProps) {
+  const gltf = useGLTF(path);
 
   useEffect(() => {
     gltf.scene.traverse((child: any) => {
@@ -18,5 +23,5 @@ export default function Model() {
     });
   }, [gltf]);
 
-  return <primitive object={gltf.scene} scale={1.5} />;
+  return <primitive object={gltf.scene} scale={scale} />;
 }
