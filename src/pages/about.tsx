@@ -62,7 +62,7 @@ const About: React.FC = () => {
                     <a href="#" className=" w-[40px] h-[40px] leading-[40px] border border-[#4c4c4c] rounded-full text-[rgba(255,255,255,0.4)] hover:bg-[#d92828] hover:text-white hover:border-transparent transition-all duration-300 flex items-center justify-center"><FontAwesomeIcon icon={faFacebookSquare} /></a>
                   </li>
                   <li className="flex items-center justify-center mb-[13px]">
-                    <a href="#" className="flex items-center justify-center w-[40px] h-[40px] leading-[40px] border border-[#4c4c4c] rounded-full text-[rgba(255,255,255,0.4)] hover:bg-[#d92828] hover:text-white hover:border-transparent transition-all duration-300"><FontAwesomeIcon icon={faInstagram} /></a>
+                    <a href="https://www.instagram.com/renderplaymx/" className="flex items-center justify-center w-[40px] h-[40px] leading-[40px] border border-[#4c4c4c] rounded-full text-[rgba(255,255,255,0.4)] hover:bg-[#d92828] hover:text-white hover:border-transparent transition-all duration-300"><FontAwesomeIcon icon={faInstagram} /></a>
                   </li>
                   <li className="flex items-center justify-center mb-[13px]">
                     <a href="#" className="flex items-center justify-center w-[40px] h-[40px] leading-[40px] border border-[#4c4c4c] rounded-full text-[rgba(255,255,255,0.4)] hover:bg-[#d92828] hover:text-white hover:border-transparent transition-all duration-300"><FontAwesomeIcon icon={faTwitterSquare} /></a>
