@@ -437,21 +437,21 @@ const About: React.FC = () => {
                 <FontAwesomeIcon icon={faArrowAltCircleUp} />
               </a>
               <div className="instagram-line">
-                <div className="container max-w-[1170px] mx-auto px-4">
-                  <ul className="insta-list flex flex-wrap">
-                    <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/hokk.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
-                    <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/5.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
-                    <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/dubai.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
-                    <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/7.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
-                    <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/8.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
-                    <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/bayan.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
-                    <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/2.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
-                    <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/omán.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
+                <div className="container max-w-[1170px] mx-auto px-4 flex flex-wrap items-center justify-between py-8">
+                  <ul className="flex flex-wrap justify-center items-center p-0 m-0">
+                    <li className="basis-1/2 w-full"><a href="#"><Image src="/images/renderplay/hokk.jpg" alt="" width={400} height={200} /></a></li>
+                    <li className="basis-1/2 w-full"><a href="#"><Image src="/images/renderplay/5.jpg" alt="" width={400} height={200} /></a></li>
+                    <li className="basis-1/2 w-full"><a href="#"><Image src="/images/renderplay/dubai.jpg" alt="" width={400} height={200} /></a></li>
+                    <li className="basis-1/2 w-full"><a href="#"><Image src="/images/renderplay/7.jpg" alt="" width={400} height={200} /></a></li>
+                    <li className="basis-1/2 w-full"><a href="#"><Image src="/images/renderplay/8.jpg" alt="" width={400} height={200} /></a></li>
+                    <li className="basis-1/2 w-full"><a href="#"><Image src="/images/renderplay/bayan.jpg" alt="" width={400} height={200} /></a></li>
+                    <li className="basis-1/2"><a href="#"><Image src="/images/renderplay/2.jpg" alt="" width={400} height={200} /></a></li>
+                    <li className="basis-1/2"><a href="#"><Image src="/images/renderplay/omán.jpg" alt="" width={400} height={200} /></a></li>
                   </ul>
                 </div>
               </div>
               <div className="widget-part-area flex flex-wrap justify-between px-4 py-8">
-                <div className="footer-widget-line w-full md:w-1/4 mb-4">
+                <div className="footer-widget-line w-full md:w-1/2 mb-4">
                   <div className="image-widget">
                     <a href="/"><Image src="/images/renderplay/logo_rojo.jpg" alt="" width={100} height={50} /></a>
                   </div>

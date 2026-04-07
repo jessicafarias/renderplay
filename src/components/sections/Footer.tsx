@@ -12,14 +12,26 @@ const Footer: React.FC = () => {
       <div className="instagram-line">
         <div className="container max-w-[1170px] mx-auto px-4">
           <ul className="insta-list flex flex-wrap">
-            <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/hokk.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
-            <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/5.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
-            <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/dubai.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
-            <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/7.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
-            <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/8.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
-            <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/bayan.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
-            <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/2.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
-            <li className="w-1/4 p-1"><a href="#" className="block"><Image src="/images/renderplay/omán.jpg" alt="" width={200} height={200} className="w-[200px] h-[200px] object-cover" /></a></li>
+            <li className="basis-1/2 lg:basis-1/4 lg:max-w-[25vw]"><a href="#" className="block">
+              <Image width={300} height={300} src="/images/renderplay/hokk.jpg" alt=""
+                className='object-cover' /></a>
+            </li>
+            <li className="basis-1/2 lg:basis-1/4 lg:max-w-[25%]"><a href="#" className="block">
+              <Image width={300} height={300} src="/images/renderplay/5.jpg" alt="" className='object-cover' /></a></li>
+            <li className="basis-1/2 lg:basis-1/4 lg:max-w-[25%]"><a href="#" className="block">
+              <Image width={300} height={300} src="/images/renderplay/dubai.jpg" alt="" className='object-cover' /></a></li>
+            <li className="basis-1/2 lg:basis-1/4 lg:max-w-[25%]"><a href="#" className="block">
+              <Image width={300} height={300} src="/images/renderplay/7.jpg" alt="" className='object-cover' /></a></li>
+               <li className="basis-1/2 lg:basis-1/4 lg:max-w-[25vw]"><a href="#" className="block">
+              <Image width={300} height={300} src="/images/renderplay/hokk.jpg" alt=""
+                className='object-cover' /></a>
+            </li>
+            <li className="basis-1/2 lg:basis-1/4 lg:max-w-[25%]"><a href="#" className="block">
+              <Image width={300} height={300} src="/images/renderplay/5.jpg" alt="" className='object-cover' /></a></li>
+            <li className="basis-1/2 lg:basis-1/4 lg:max-w-[25%]"><a href="#" className="block">
+              <Image width={300} height={300} src="/images/renderplay/dubai.jpg" alt="" className='object-cover' /></a></li>
+            <li className="basis-1/2 lg:basis-1/4 lg:max-w-[25%]"><a href="#" className="block">
+              <Image width={300} height={300} src="/images/renderplay/7.jpg" alt="" className='object-cover' /></a></li>
           </ul>
         </div>
       </div>
