@@ -6,7 +6,7 @@ import Loader from '@/components/sections/Loader';
 import AboutSection from '@/components/sections/AboutSection';
 import ServicesSection3 from '@/components/sections/ServicesSection3';
 import FeaturesSection from '@/components/sections/FeaturesSection';
-import FeaturesSection2 from '@/components/sections/FeaturesSection2';
+// import FeaturesSection2 from '@/components/sections/FeaturesSection2';
 import ServicesSection6 from '@/components/sections/ServicesSection6';
 import Footer from '@/components/sections/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -68,7 +68,7 @@ const Home = () => {
             <FeaturesSection />
             <div className="divider-line h-[1px] bg-white/5 mx-10"></div>
             
-            <FeaturesSection2 />
+            {/* <FeaturesSection2 /> */}
             <ServicesSection6 />
             <Footer />
           </div>
