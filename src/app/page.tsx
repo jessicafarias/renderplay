@@ -1,16 +1,13 @@
+import ModelViewer from "@/components/ModelViewer";
+import "./globals.css";
+
 export default function Home() {
   return (
-    <div >
-     <main>
-      <h1>RenderPlay Feature Demo</h1>
-      <div>HELLLO</div>
-      <div>HELLLO</div>
-      <div>HELLLO</div>
-      <div>HELLLO</div>
-      <div>HELLLO</div>
-      <div>HELLLO</div>
-      <div>HELLLO</div>
-     </main>
-    </div>
+    <main className="flex flex-col items-center">
+      <h1 className="z-10 whitespace-nowrap m-0 text-5xl font-bold tracking-[4px] text-[#00ff2a] font-courier text-shadow-glow-title py-8">
+        RenderPlay Feature Model Switcher
+      </h1>
+      <ModelViewer />
+    </main>
   );
 }
