@@ -2,6 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleUp } from '@fortawesome/free-solid-svg-icons';
+import { faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const Footer: React.FC = () => {
   return (
@@ -36,31 +38,18 @@ const Footer: React.FC = () => {
         </div>
       </div>
       <div className="widget-part-area flex flex-wrap justify-between px-4 py-8">
-        <div className="footer-widget-line w-full md:w-1/4 mb-4">
-          <div className="image-widget">
-            <a href="/"><Image src="/images/renderplay/logo_rojo.jpg" alt="" width={100} height={50} /></a>
-          </div>
-        </div>
-        <div className="footer-widget-line w-full md:w-1/4 mb-4">
-          <h5 className="text-white text-[20px] font-bold m-0 mb-[6px]">Ubicación</h5>
-          <ul className="custom-list p-0 m-0">
-            <li className="mb-2"><a href="#" className="block text-white">Mérida</a></li>
-            <li className="mb-2"><a href="#" className="block text-white">Yucatán</a></li>
-            <li className="mb-2"><a href="#" className="block text-white">México</a></li>
+        <div className="basis-full lg:basis-1/2 m-auto flex flex-col items-center text-center mb-4">
+          <h5 className="text-white text-[20px] font-bold m-0 mb-[6px]">Sígenos en redes</h5>
+          <ul className="custom-list p-0 m-0 justify-center flex">
+            <li className="mb-2"><a href="#" className="block text-white text-[40px]"><FontAwesomeIcon icon={faInstagram} /></a></li>
+            <li className="mb-2"><a href="#" className="block text-white text-[40px]"><FontAwesomeIcon icon={faFacebookSquare} /></a></li>
           </ul>
         </div>
-        <div className="footer-widget-line w-full md:w-1/4 mb-4">
-          <h5 className="text-white text-[20px] font-bold m-0 mb-[6px]">Connect</h5>
-          <ul className="custom-list p-0 m-0">
-            <li className="mb-2"><a href="#" className="block text-white">instagram</a></li>
-            <li className="mb-2"><a href="#" className="block text-white">facebook</a></li>
-          </ul>
-        </div>
-        <div className="footer-widget-line w-full md:w-1/4 mb-4">
-          <h5 className="text-white text-[20px] font-bold m-0 mb-[6px]">Get in Touch</h5>
-          <ul className="custom-list p-0 m-0">
-            <li className="mb-2"><a href="#" className="block text-white">renderplay@gmail.com.com</a></li>
-            <li className="mb-2"><a href="#" className="block text-white">0055 1200 6700</a></li>
+        <div className="basis-full lg:basis-1/2 m-auto">
+          <h5 className="text-white text-[20px] font-bold m-0 mb-[6px] font-geist text-center">Get in Touch</h5>
+          <ul className="flex flex-col p-0 m-auto justify-center items-center gap-x-4">
+            <li className="mb-2"><a href="#" className="block text-white font-geist">renderplay@gmail.com.com</a></li>
+            <li className="mb-2"><a href="#" className="block text-white font-geist">0055 1200 6700</a></li>
           </ul>
         </div>
       </div>
