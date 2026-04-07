@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
+/* CSS custom properties for theming */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
+/* Tailwind theme configuration */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -12,6 +14,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Dark mode media query */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,28 +22,18 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
 @layer utilities {
+  /* Custom text shadow - no direct Tailwind equivalent */
   .text-shadow-glow-title {
     text-shadow: 0 0 10px #00ff2a, 0 0 20px #00ff2a;
   }
 
+  /* Custom text shadow - no direct Tailwind equivalent */
   .text-shadow-glow {
     text-shadow: 0 0 10px #00ff2a;
   }
 
-  .colortest{
-    background-color: #191919;
-  }
-
-  .font-courier {
-    font-family: 'Courier New', Courier, monospace;
-  }
-
+  /* Custom border and box-shadow - no direct Tailwind equivalent */
   .canvas-glow {
     border: 1px solid #00ff2a;
     box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1);
@@ -51,76 +44,7 @@ body {
    LOADER STYLES - from _general.scss
    ======================================== */
 
-.ip-header {
-  position: fixed;
-  top: 0;
-  z-index: 99999;
-  min-height: 480px;
-  width: 100%;
-  height: 100%;
-  background: #242424;
-}
-
-.ip-header h1 {
-  margin: 0;
-}
-
-.ip-logo,
-.ip-loader {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  opacity: 0;
-  cursor: default;
-  pointer-events: none;
-}
-
-.ip-logo {
-  top: 0;
-  height: 100%;
-  transform: translate3d(0, 50%, 0);
-  text-align: center;
-}
-
-.ip-logo img {
-  max-width: 250px;
-}
-
-.ip-loader {
-  bottom: 20%;
-}
-
-.ip-header .ip-inner {
-  display: block;
-  margin: 0 auto;
-}
-
-.ip-header .ip-loader svg {
-  fill: #242424;
-}
-
-.ip-header .ip-loader svg path.ip-loader-circlebg {
-  stroke: #333333 !important;
-  stroke-width: 5px;
-}
-
-.ip-header .ip-loader svg path.ip-loader-circle {
-  transition: stroke-dashoffset 0.2s;
-  stroke: #d92828;
-  stroke-width: 2px;
-}
-
-/* Loading state animations */
-.loading .ip-logo,
-.loading .ip-loader {
-  opacity: 1;
-  animation: animInitialHeader 1s cubic-bezier(0.7, 0, 0.3, 1) both;
-}
-
-.loading .ip-loader {
-  animation-delay: 0.2s;
-}
-
+/* Custom keyframe animation - no direct Tailwind equivalent */
 @keyframes animInitialHeader {
   from {
     opacity: 0;
@@ -132,27 +56,14 @@ body {
   }
 }
 
-/* Loaded state animations */
-.loaded .ip-logo,
-.loaded .ip-loader {
-  opacity: 1;
-}
-
-.loaded .ip-logo {
-  transform-origin: 50% 0;
-  animation: animLoadedLogo 1s cubic-bezier(0.7, 0, 0.3, 1) forwards;
-}
-
-.loaded .ip-loader {
-  animation: animLoadedLoader 0.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
-}
-
+/* Custom keyframe animation - no direct Tailwind equivalent */
 @keyframes animLoadedLogo {
   to {
     transform: translate3d(0, 100%, 0) translate3d(0, 50px, 0) scale3d(0.65, 0.65, 1);
   }
 }
 
+/* Custom keyframe animation - no direct Tailwind equivalent */
 @keyframes animLoadedLoader {
   to {
     opacity: 0;
@@ -160,25 +71,9 @@ body {
   }
 }
 
-.loaded .ip-header {
-  animation: animLoadedHeader 1s cubic-bezier(0.7, 0, 0.3, 1) forwards;
-}
-
+/* Custom keyframe animation - no direct Tailwind equivalent */
 @keyframes animLoadedHeader {
   to {
     transform: translate3d(0, -100%, 0);
   }
-}
-
-/* No-JS fallback */
-.no-js .ip-header {
-  position: relative;
-  min-height: 0px;
-}
-
-.no-js .ip-header .ip-logo {
-  margin-top: 20px;
-  height: 180px;
-  opacity: 1;
-  transform: none;
 }
