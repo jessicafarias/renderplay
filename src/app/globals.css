@@ -1,78 +1,48 @@
 @import "tailwindcss";
 
-/* CSS custom properties for theming */
+/* 1. AGREGAR MONTSERRAT (Si no la tienes en el proyecto) */
+/* Si usas Next.js, es mejor hacerlo vía next/font/google */
+
+/* Geist Sans Font Faces... (Tus fuentes actuales están bien) */
+body {
+  background-color: rgb(61, 41, 5);
+}
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a; /* Forzamos el modo oscuro como base para RenderPlay */
+  --foreground: #ffffff;
+  --accent-red: #d92828;
 }
 
-/* Tailwind theme configuration */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Geist', ui-sans-serif, system-ui;
+  --color-brand-red: #d92828;
 }
 
-/* Dark mode media query */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 2. SOLUCIÓN AL SCROLL DEL MENÚ */
+/* Evita que la página se mueva cuando el sidebar está abierto */
+.no-scroll {
+  overflow: hidden;
 }
 
 @layer utilities {
-  /* Custom text shadow - no direct Tailwind equivalent */
   .text-shadow-glow-title {
     text-shadow: 0 0 10px #00ff2a, 0 0 20px #00ff2a;
   }
-
-  /* Custom text shadow - no direct Tailwind equivalent */
-  .text-shadow-glow {
-    text-shadow: 0 0 10px #00ff2a;
+  
+  /* Ajuste de scrollbar para el nav-menu-box */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
   }
-
-  /* Custom border and box-shadow - no direct Tailwind equivalent */
-  .canvas-glow {
-    border: 1px solid #00ff2a;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1);
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #d92828;
   }
 }
 
-/* ========================================
-   LOADER STYLES - from _general.scss
-   ======================================== */
-
-/* Custom keyframe animation - no direct Tailwind equivalent */
+/* 3. TUS ANIMACIONES DE LOADER (Mantenerlas igual) */
 @keyframes animInitialHeader {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 800px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-/* Custom keyframe animation - no direct Tailwind equivalent */
-@keyframes animLoadedLogo {
-  to {
-    transform: translate3d(0, 100%, 0) translate3d(0, 50px, 0) scale3d(0.65, 0.65, 1);
-  }
-}
-
-/* Custom keyframe animation - no direct Tailwind equivalent */
-@keyframes animLoadedLoader {
-  to {
-    opacity: 0;
-    transform: translate3d(0, -100%, 0) scale3d(0.3, 0.3, 1);
-  }
-}
-
-/* Custom keyframe animation - no direct Tailwind equivalent */
-@keyframes animLoadedHeader {
   to {
     transform: translate3d(0, -100%, 0);
   }

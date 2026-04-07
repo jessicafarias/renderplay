@@ -25,13 +25,13 @@ const FeaturesSection2: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full lg:w-1/2 p-4">
+            {/* <div className="w-full lg:w-1/2 p-4">
               <div className="feature-content">
-                <span className="block text-white text-[15px] font-['Montserrat'] font-light leading-[26px] m-0 mb-[16px]">amazing features</span>
+                <span className="block text-white text-[15px] font-geist font-light leading-[26px] m-0 mb-[16px]">amazing features</span>
                 <h3 className="text-white text-[25px] font-bold m-0 mb-[12px]">RenderPlay</h3>
-                <p className="text-[rgba(255,255,255,0.8)] text-[15px] font-['Montserrat'] font-light leading-[26px] m-0">Nuestra plataforma RenderPlay integra herramientas avanzadas de modelado 3D con realidad virtual, permitiendo a arquitectos y diseñadores presentar sus proyectos de manera inmersiva y revolucionaria a clientes y stakeholders.</p>
+                <p className="text-[rgba(255,255,255,0.8)] text-[15px] font-geist font-light leading-[26px] m-0">Nuestra plataforma RenderPlay integra herramientas avanzadas de modelado 3D con realidad virtual, permitiendo a arquitectos y diseñadores presentar sus proyectos de manera inmersiva y revolucionaria a clientes y stakeholders.</p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

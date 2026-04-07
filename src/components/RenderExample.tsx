@@ -4,47 +4,69 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Suspense } from "react";
 import Model from "@/components/Model";
-import { MODELS } from "@/config/models";
 import { useModelSwitcher } from "@/hooks/useModelSwitcher";
 
 const RenderExample = () => {
-  const { current, currentIndex, next } = useModelSwitcher();
+  const { current, next } = useModelSwitcher();
 
   return (
-    <div className="flex justify-center items-center">
-      <div className=" font-mono text-xs z-10 text-[#00ff2a] opacity-60">
-        [E] NEXT MODEL
-      </div>
-      {/* Single button */}
-      <div className="z-10">
-        <button
-          onClick={next}
-          className="font-mono text-xs px-6 py-1.5 border border-[#00ff2a] text-[#00ff2a] hover:bg-[#00ff2a] hover:text-black transition-colors duration-150"
-        >
-          NEXT MODEL →
-        </button>
-      </div>
-      <div className="">
-        {/* E hint */}
+    <div className="relative w-full group">
+      <div className="relative w-full h-[50vh] min-h-[200px] lg:max-h-[600px] overflow-hidden rounded-lg bg-black/20">
+        
+        <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-20 pointer-events-none">
+          {/* Hint de Teclado (Oculto en móvil) */}
+          <div className="hidden lg:block font-mono text-[10px] text-[#00ff2a] opacity-40">
+            [E] KEYBOARD SHORTCUT
+          </div>
 
+          {/* Botón de Interacción */}
+          <button
+            onClick={next}
+            className="pointer-events-auto font-mono text-[10px] lg:text-xs px-4 py-2 border border-[#00ff2a] text-[#00ff2a] hover:bg-[#00ff2a] hover:text-black transition-all duration-300 backdrop-blur-sm"
+          >
+            NEXT MODEL →
+          </button>
+        </div>
+
+        {/* Info del Modelo actual (Opcional, se ve muy Pro) */}
+        <div className="absolute bottom-4 left-4 z-20 pointer-events-none font-mono text-[10px] text-[#00ff2a]/60 uppercase tracking-widest">
+            Model: {current.path.split('/').pop()?.replace('.glb', '')}
+        </div>
+
+        {/* EL CANVAS */}
         <Canvas
           key={current.path}
-          className="canvas-glow"
-          camera={{ position: [0, 2, 5] }}
+          // El estilo canvas-glow debe estar en tu globals.css
+          className="canvas-glow w-full h-full"
+          camera={{ position: [0, 2, 5], fov: 45 }}
+          shadows
         >
-          <ambientLight intensity={1} />
-          <directionalLight position={[2, 2, 2]} intensity={2} />
+          <ambientLight intensity={1.5} />
+          <pointLight position={[10, 10, 10]} intensity={1} />
+          <directionalLight position={[-5, 5, 5]} intensity={2} />
 
           <Suspense fallback={null}>
             <Model path={current.path} scale={current.scale} />
           </Suspense>
 
-          <OrbitControls />
+          {/* OrbitControls: 
+             - enableDamping hace que el giro se sienta suave.
+             - minDistance/maxDistance evita que el usuario se pierda en el infinito.
+          */}
+          <OrbitControls 
+            enableDamping 
+            dampingFactor={0.05}
+            minDistance={2}
+            maxDistance={10}
+            enablePan={false}
+          />
         </Canvas>
-
       </div>
-
-
+      
+      {/* Nota debajo del canvas para móvil */}
+      <p className="mt-2 text-center text-[10px] font-mono text-white/20 uppercase tracking-tighter lg:hidden">
+        Interact with 3D model
+      </p>
     </div>
   );
 };
