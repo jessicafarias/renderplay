@@ -32,7 +32,7 @@ const About: React.FC = () => {
         {/* Initial loader */}
         <div className="ip-header absolute top-0 left-0 w-full h-full flex items-center justify-center">
           <p className="m-auto">
-            <Image src="/images/renderplay/logotransparente.png" alt="Logo" width={250} height={100} className="max-w-[250px]" />
+            <Image src="https://res.cloudinary.com/dqlvmeoii/image/upload/v1775527060/renderplay_papvqi.webp" alt="Logo" width={250} height={100} className="max-w-[250px]" />
           </p>
           <div className="ip-loader absolute bottom-[20%] opacity-0">
             <svg className="ip-inner w-[100px] h-[100px]" viewBox="0 0 80 80">
@@ -354,13 +354,13 @@ const About: React.FC = () => {
                         <div className="flex flex-wrap">
                           <div className="w-full md:w-1/2 p-2">
                             <div className="image-holder relative">
-                              <Image src="/upload/home3/feature-img-1.jpg" alt="feature1" fill className="object-cover" />
+                              <Image src="https://res.cloudinary.com/dqlvmeoii/image/upload/v1775527060/renderplay_papvqi.webp" alt="feature1" fill className="object-cover" />
                               <span className="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white p-2">Diseño & Construcción</span>
                             </div>
                           </div>
                           <div className="w-full md:w-1/2 p-2">
                             <div className="image-holder relative">
-                              <Image src="/upload/home3/feature-img-2.png" alt="feature2" fill className="object-cover" />
+                              <Image src="https://res.cloudinary.com/dqlvmeoii/image/upload/v1775527060/renderplay_papvqi.webp" alt="feature2" fill className="object-cover" />
                               <span className="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white p-2">Modern Architecture</span>
                             </div>
                           </div>

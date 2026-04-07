@@ -21,12 +21,12 @@ export default function ModelViewer() {
         <div className="absolute bottom-0 right-0 w-10 h-10 border-b-[3px] border-r-[3px] border-[#00ff2a] z-10" />
 
         {/* HUD — tracking */}
-        <div className="absolute top-2.5 right-12 font-mono text-xs z-10 text-shadow-glow text-[#00ff2a]">
+        <div className="absolute top-2.5 right-12 font-mono text-xs z-10 text-[#00ff2a]" style={{ textShadow: '0 0 10px #00ff2a' }}>
           [TRACKING...]
         </div>
 
         {/* HUD — model name */}
-        <div className="absolute top-2.5 left-12 font-mono text-xs z-10 text-shadow-glow text-[#00ff2a]">
+        <div className="absolute top-2.5 left-12 font-mono text-xs z-10 text-[#00ff2a]" style={{ textShadow: '0 0 10px #00ff2a' }}>
           {currentIndex + 1} / {MODELS.length} — {current.name.toUpperCase()}
         </div>
 
@@ -47,7 +47,11 @@ export default function ModelViewer() {
 
         <Canvas
           key={current.path}
-          className="w-full h-full canvas-glow"
+          className="w-full h-full"
+          style={{
+            border: '1px solid #00ff2a',
+            boxShadow: '0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1)'
+          }}
           camera={{ position: [0, 2, 5] }}
         >
           <ambientLight intensity={1} />
