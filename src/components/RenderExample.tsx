@@ -14,12 +14,10 @@ const RenderExample = () => {
       <div className="relative w-full h-[50vh] min-h-[200px] lg:max-h-[600px] overflow-hidden rounded-lg bg-black/20">
         
         <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-20 pointer-events-none">
-          {/* Hint de Teclado (Oculto en móvil) */}
           <div className="hidden lg:block font-mono text-[10px] text-[#00ff2a] opacity-40">
             [E] KEYBOARD SHORTCUT
           </div>
 
-          {/* Botón de Interacción */}
           <button
             onClick={next}
             className="pointer-events-auto font-mono text-[10px] lg:text-xs px-4 py-2 border border-[#00ff2a] text-[#00ff2a] hover:bg-[#00ff2a] hover:text-black transition-all duration-300 backdrop-blur-sm"
@@ -28,7 +26,6 @@ const RenderExample = () => {
           </button>
         </div>
 
-        {/* Info del Modelo actual (Opcional, se ve muy Pro) */}
         <div className="absolute bottom-4 left-4 z-20 pointer-events-none font-mono text-[10px] text-[#00ff2a]/60 uppercase tracking-widest">
             Model: {current.path.split('/').pop()?.replace('.glb', '')}
         </div>
@@ -49,10 +46,6 @@ const RenderExample = () => {
             <Model path={current.path} scale={current.scale} />
           </Suspense>
 
-          {/* OrbitControls: 
-             - enableDamping hace que el giro se sienta suave.
-             - minDistance/maxDistance evita que el usuario se pierda en el infinito.
-          */}
           <OrbitControls 
             enableDamping 
             dampingFactor={0.05}
@@ -63,7 +56,6 @@ const RenderExample = () => {
         </Canvas>
       </div>
       
-      {/* Nota debajo del canvas para móvil */}
       <p className="mt-2 text-center text-[10px] font-mono text-white/20 uppercase tracking-tighter lg:hidden">
         Interact with 3D model
       </p>

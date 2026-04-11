@@ -5,7 +5,7 @@ export interface ModelConfig {
 }
 
 export const MODELS: ModelConfig[] = [
-  { name: "Buster Drone", path: "/models/drone/scene.gltf",         scale: 1.5  },
-  { name: "Helmet",       path: "/models/helmet/scene1.gltf",  scale: 0.02 },
-  { name: "Casa",         path: "/models/casa/CASA.gltf",     scale: 0.3},
+  { name: "Buster Drone", path: "/models/choza/ChozaM_E8C93442.gltf",         scale: 0.5  },
+  // { name: "Helmet",       path: "/models/helmet/scene1.gltf",  scale: 0.02 },
+  // { name: "Casa",         path: "/models/casa/CASA.gltf",     scale: 0.3},
 ];

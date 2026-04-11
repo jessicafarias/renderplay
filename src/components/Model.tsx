@@ -1,7 +1,8 @@
 "use client";
 
-import { useGLTF } from "@react-three/drei";
-import { useEffect } from "react";
+import { useGLTF, useAnimations } from "@react-three/drei";
+import { useEffect, useRef } from "react";
+import { Group } from "three";
 
 interface ModelProps {
   path: string;
@@ -9,7 +10,9 @@ interface ModelProps {
 }
 
 export default function Model({ path, scale }: ModelProps) {
+  const group = useRef<Group>(null);
   const gltf = useGLTF(path);
+  const { actions, names } = useAnimations(gltf.animations, group);
 
   useEffect(() => {
     gltf.scene.traverse((child: any) => {
@@ -23,5 +26,16 @@ export default function Model({ path, scale }: ModelProps) {
     });
   }, [gltf]);
 
-  return <primitive object={gltf.scene} scale={scale} />;
+  useEffect(() => {
+    if (!names.length) return;
+    const action = actions[names[0]];
+    action?.reset().play();
+    return () => { action?.stop(); };
+  }, [actions, names]);
+
+  return (
+    <group ref={group}>
+      <primitive object={gltf.scene} scale={scale} />
+    </group>
+  );
 }
