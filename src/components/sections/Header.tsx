@@ -20,8 +20,7 @@ const Header: React.FC<HeaderProps> = ({ menuOpen, setMenuOpen }) => {
 
   const menuItems = [
     { name: 'Inicio', href: '/' },
-    { name: 'Nosotros', href: '/about' },
-    { name: 'Proyectos', href: '/portfolio' },
+    { name: 'Proyectos', href: '/about' },
     { name: 'Contacto', href: '/contact' },
   ];
 

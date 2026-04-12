@@ -154,7 +154,7 @@ export default function ModelViewer() {
           )}
 
           {/* Controls Info - Bottom Center */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[10px] z-20 text-[#555] tracking-widest uppercase text-center">
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[15px] z-20 text-[#555] tracking-widest uppercase text-center">
             {firstPerson
               ? "[F] Exit · WASD Move · Click to capture"
               : "[E] Next · [F] First Person"}
@@ -204,8 +204,8 @@ export default function ModelViewer() {
             {!firstPerson && !websiteMode && (
               <button
                 onClick={next}
-                className="font-mono text-[11px] px-5 py-2.5 border border-white/15 text-[#999]
-                           hover:border-[#d92828] hover:text-[#ededed] transition-all tracking-widest uppercase"
+                className="font-mono text-[11px] px-5 py-2.5 border border-white/15 text-black
+                           hover:border-[#d92828] hover:bg-[#d92828] hover:text-[#ededed] transition-all tracking-widest uppercase"
               >
                 Next Model →
               </button>
@@ -213,7 +213,7 @@ export default function ModelViewer() {
             <button
               onClick={() => setShowExperienceModal(true)}
               className="font-mono text-[11px] px-5 py-2.5 border border-[#d92828] text-[#d92828]
-                         hover:bg-[#d92828] hover:text-white transition-all tracking-widest uppercase"
+                         bg-[#c73434] hover:bg-[#d92828] text-white transition-all tracking-widest uppercase"
             >
               Experience Mode
             </button>

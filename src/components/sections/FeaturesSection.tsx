@@ -28,7 +28,7 @@ const FeaturesSection: React.FC = () => {
 
                 <div className="flex items-center gap-6">
                   <a 
-                    href="/portfolio" 
+                    href="/about" 
                     className="group relative inline-flex items-center justify-center py-4 px-8 text-white uppercase text-[12px] tracking-widest font-bold transition-all duration-300 border border-white/10 hover:border-[#d92828] bg-transparent"
                   >
                     <span className="relative z-10">Ver Proyectos</span>
