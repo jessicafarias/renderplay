@@ -76,22 +76,56 @@ export function useFirstPerson(enabled: boolean) {
     };
   }, [enabled]);
 
-  useFrame(() => {
-    if (!enabled || !isLocked.current) return;
+  useFrame((_, delta) => {
+    if (!enabled) return;
 
-    // Reusar refs en lugar de new THREE.Vector3() cada frame
-    camera.getWorldDirection(_forward.current);
-    _right.current.crossVectors(_forward.current, camera.up).normalize();
-    _move.current.set(0, 0, 0);
+    // XR Gamepad support (Meta Quest joystick)
+    // Only move with joystick if in XR session, otherwise use pointer lock
+    const xrSession = (gl as any).xr?.getSession?.();
+    let moved = false;
+    
+    if (xrSession && xrSession.inputSources) {
+      try {
+        for (const source of xrSession.inputSources) {
+          if (source && source.gamepad && source.handedness === "right") {
+            const [x, y] = source.gamepad.axes;
+            // Deadzone for joystick
+            if (Math.abs(x) > 0.1 || Math.abs(y) > 0.1) {
+              camera.getWorldDirection(_forward.current);
+              _right.current.crossVectors(_forward.current, camera.up).normalize();
+              _move.current.set(0, 0, 0);
+              // Forward/back (y), left/right (x)
+              _move.current.addScaledVector(_forward.current, -y);
+              _move.current.addScaledVector(_right.current, x);
+              if (_move.current.lengthSq() > 0) {
+                _move.current.normalize();
+                camera.position.addScaledVector(_move.current, SPEED * 2 * delta * 60); // Faster in VR
+                moved = true;
+              }
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Error reading XR gamepad:", error);
+      }
+    }
 
-    if (keys.current["w"]) _move.current.addScaledVector(_forward.current, 1);
-    if (keys.current["s"]) _move.current.addScaledVector(_forward.current, -1);
-    if (keys.current["a"]) _move.current.addScaledVector(_right.current, -1);
-    if (keys.current["d"]) _move.current.addScaledVector(_right.current, 1);
+    // Only allow pointer lock movement if not in XR
+    if (!xrSession && isLocked.current) {
+      camera.getWorldDirection(_forward.current);
+      _right.current.crossVectors(_forward.current, camera.up).normalize();
+      _move.current.set(0, 0, 0);
 
-    if (_move.current.lengthSq() > 0) {
-      _move.current.normalize();
-      camera.position.addScaledVector(_move.current, SPEED);
+      if (keys.current["w"]) _move.current.addScaledVector(_forward.current, 1);
+      if (keys.current["s"]) _move.current.addScaledVector(_forward.current, -1);
+      if (keys.current["a"]) _move.current.addScaledVector(_right.current, -1);
+      if (keys.current["d"]) _move.current.addScaledVector(_right.current, 1);
+
+      if (_move.current.lengthSq() > 0) {
+        _move.current.normalize();
+        camera.position.addScaledVector(_move.current, SPEED);
+        moved = true;
+      }
     }
   });
 }

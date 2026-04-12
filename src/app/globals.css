@@ -4,9 +4,6 @@
 /* Si usas Next.js, es mejor hacerlo vía next/font/google */
 
 /* Geist Sans Font Faces... (Tus fuentes actuales están bien) */
-body {
-  background-color: rgb(61, 41, 5);
-}
 :root {
   --background: #0a0a0a; /* Forzamos el modo oscuro como base para RenderPlay */
   --foreground: #ffffff;
