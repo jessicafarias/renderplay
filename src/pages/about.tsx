@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Model from "@/components/Model";
 import Scene from "@/components/Scene";
 import FirstPersonControls from "@/components/FirstPersonControls";
+import ControllerVisualization from "@/components/ControllerVisualization";
 import { MODELS } from "@/config/models";
 import { useModelSwitcher } from "@/hooks/useModelSwitcher";
 import Header from "@/components/sections/Header";
@@ -22,7 +23,7 @@ function isOperaGX(): boolean {
 }
 
 // ── VR Modal ──────────────────────────────────────────────────────────────────
-function VRModal({ onEnter, onClose }: { onEnter: () => void; onClose: () => void }) {
+function VRModal({ onEnter, onClose }: { onEnter: (mode: "vr" | "website") => void; onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
       onClick={onClose}
@@ -33,41 +34,37 @@ function VRModal({ onEnter, onClose }: { onEnter: () => void; onClose: () => voi
       >
         {/* Header */}
         <p className="font-mono text-[10px] tracking-[0.2em] text-[#d92828] opacity-70 mb-1 uppercase">
-          XR System
+          Experience Mode
         </p>
         <h2 className="font-mono text-lg tracking-[0.1em] text-[#ededed] pb-4 mb-4 border-b border-[#8B1A1A]/30 uppercase">
-          Immersive Mode
+          Choose Display Type
         </h2>
-        {[
-          ["Mode", "Immersive VR"],
-          ["Reference Space", "Local Floor"],
-          ["Frame Rate", "72 Hz · Auto"],
-          ["Controllers", "Touch · L+R"],
-        ].map(([label, value]) => (
-          <div
-            key={label}
-            className="flex justify-between items-center py-2 border-b border-white/10 font-mono text-[12px]"
-          >
-            <span className="text-[#999] tracking-wide uppercase">{label}</span>
-            <span className="text-[#ededed] tracking-[0.1em]">{value}</span>
-          </div>
-        ))}
+        <p className="text-[#999] font-mono text-[12px] leading-relaxed mb-4">
+          Select your preferred viewing experience:
+        </p>
 
         {/* Buttons */}
-        <div className="flex gap-3 mt-6">
+        <div className="flex flex-col gap-3 mt-6">
+          <button
+            onClick={() => onEnter("vr")}
+            className="font-mono text-[11px] tracking-[0.1em] py-3 px-4 border border-[#d92828]
+                       bg-[#d92828] text-white hover:bg-[#a02020] transition-colors uppercase w-full"
+          >
+            🥽 Meta Quest VR → 
+          </button>
+          <button
+            onClick={() => onEnter("website")}
+            className="font-mono text-[11px] tracking-[0.1em] py-3 px-4 border border-[#4a9d6f]
+                       bg-[#2a5f45] text-[#a8d5c8] hover:bg-[#3a7f55] transition-colors uppercase w-full"
+          >
+            🌐 Website Mode
+          </button>
           <button
             onClick={onClose}
-            className="flex-1 font-mono text-[11px] tracking-[0.1em] py-2.5 border border-white/20
+            className="font-mono text-[11px] tracking-[0.1em] py-2.5 border border-white/20
                        text-[#999] hover:text-[#ededed] hover:border-white/40 transition-all bg-transparent uppercase"
           >
             Cancel
-          </button>
-          <button
-            onClick={onEnter}
-            className="flex-1 font-mono text-[11px] tracking-[0.1em] py-2.5 border border-[#d92828]
-                       bg-[#d92828] text-white hover:bg-[#a02020] transition-colors uppercase"
-          >
-            Enter VR →
           </button>
         </div>
       </div>
@@ -104,6 +101,7 @@ export default function ModelViewer() {
   const [showVRModal, setShowVRModal] = useState(false);
   const [browserBlocked, setBrowserBlocked] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [websiteMode, setWebsiteMode] = useState(false);
   const router = useRouter();
 
   // Check browser on mount
@@ -119,12 +117,12 @@ export default function ModelViewer() {
     return () => window.removeEventListener("keydown", handleKey);
   }, []);
 
-  const handleEnterVR = () => {
+  const handleEnterMode = (mode: "vr" | "website") => {
     setShowVRModal(false);
-    if (typeof navigator !== "undefined" && "xr" in navigator) {
+    if (mode === "vr") {
       router.push("/vr");
-    } else {
-      alert("WebXR is not supported in your browser. Please use a compatible device.");
+    } else if (mode === "website") {
+      setWebsiteMode(true);
     }
   };
 
@@ -139,13 +137,20 @@ export default function ModelViewer() {
         {/* Canvas Section */}
         <div className="relative w-full h-[70vh] lg:h-screen">
           {showVRModal && (
-            <VRModal onEnter={handleEnterVR} onClose={() => setShowVRModal(false)} />
+            <VRModal onEnter={handleEnterMode} onClose={() => setShowVRModal(false)} />
           )}
 
           {/* Model Info - Top Left */}
           <div className="absolute top-6 left-6 font-mono text-xs z-20 text-[#777] tracking-widest uppercase">
             {currentIndex + 1} / {MODELS.length} — {current.name}
           </div>
+
+          {/* Website Mode Indicator */}
+          {websiteMode && (
+            <div className="absolute top-6 right-6 font-mono text-xs z-20 text-[#4a9d6f] tracking-widest uppercase bg-[#2a5f45]/50 px-3 py-1 border border-[#4a9d6f]/50">
+              🌐 Website Mode Active
+            </div>
+          )}
 
           {/* Controls Info - Bottom Center */}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[10px] z-20 text-[#555] tracking-widest uppercase text-center">
@@ -176,11 +181,21 @@ export default function ModelViewer() {
               ? <FirstPersonControls enabled={true} />
               : <OrbitControls maxPolarAngle={Math.PI / 2} />
             }
+            {websiteMode && <ControllerVisualization demoMode={true} />}
           </Canvas>
 
           {/* Buttons - Bottom Right */}
           <div className="absolute bottom-6 right-6 z-20 flex gap-3">
-            {!firstPerson && (
+            {websiteMode && (
+              <button
+                onClick={() => setWebsiteMode(false)}
+                className="font-mono text-[11px] px-5 py-2.5 border border-[#4a9d6f] text-[#4a9d6f]
+                           hover:bg-[#2a5f45] hover:text-[#a8d5c8] transition-all tracking-widest uppercase"
+              >
+                ← Exit Website Mode
+              </button>
+            )}
+            {!firstPerson && !websiteMode && (
               <button
                 onClick={next}
                 className="font-mono text-[11px] px-5 py-2.5 border border-white/15 text-[#999]
@@ -194,7 +209,7 @@ export default function ModelViewer() {
               className="font-mono text-[11px] px-5 py-2.5 border border-[#d92828] text-[#d92828]
                          hover:bg-[#d92828] hover:text-white transition-all tracking-widest uppercase"
             >
-              Enter VR
+              Experience Mode
             </button>
           </div>
         </div>
