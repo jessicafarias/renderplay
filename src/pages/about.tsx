@@ -98,7 +98,7 @@ function BrowserBlocked() {
 export default function ModelViewer() {
   const { current, currentIndex, next } = useModelSwitcher();
   const [firstPerson, setFirstPerson] = useState(false);
-  const [showVRModal, setShowVRModal] = useState(false);
+  const [showExperienceModal, setShowExperienceModal] = useState(false);
   const [browserBlocked, setBrowserBlocked] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [websiteMode, setWebsiteMode] = useState(false);
@@ -205,7 +205,7 @@ export default function ModelViewer() {
               </button>
             )}
             <button
-              onClick={() => setShowVRModal(true)}
+              onClick={() => setShowExperienceModal(true)}
               className="font-mono text-[11px] px-5 py-2.5 border border-[#d92828] text-[#d92828]
                          hover:bg-[#d92828] hover:text-white transition-all tracking-widest uppercase"
             >
