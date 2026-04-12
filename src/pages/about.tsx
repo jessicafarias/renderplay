@@ -118,7 +118,7 @@ export default function ModelViewer() {
   }, []);
 
   const handleEnterMode = (mode: "vr" | "website") => {
-    setShowVRModal(false);
+    setShowExperienceModal(false);
     if (mode === "vr") {
       router.push("/vr");
     } else if (mode === "website") {
@@ -136,8 +136,8 @@ export default function ModelViewer() {
         
         {/* Canvas Section */}
         <div className="relative w-full h-[70vh] lg:h-screen">
-          {showVRModal && (
-            <VRModal onEnter={handleEnterMode} onClose={() => setShowVRModal(false)} />
+          {showExperienceModal && (
+            <VRModal onEnter={handleEnterMode} onClose={() => setShowExperienceModal(false)} />
           )}
 
           {/* Model Info - Top Left */}
