@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Model from "@/components/Model";
 import Scene from "@/components/Scene";
 import FirstPersonControls from "@/components/FirstPersonControls";
+import WebControls from "@/components/WebControls";
 import ControllerVisualization from "@/components/ControllerVisualization";
 import { MODELS } from "@/config/models";
 import { useModelSwitcher } from "@/hooks/useModelSwitcher";
@@ -177,11 +178,16 @@ export default function ModelViewer() {
             <Suspense fallback={null}>
               <Model path={current.path} scale={current.scale} />
             </Suspense>
-            {firstPerson
-              ? <FirstPersonControls enabled={true} />
-              : <OrbitControls maxPolarAngle={Math.PI / 2} />
-            }
-            {websiteMode && <ControllerVisualization demoMode={true} />}
+            {websiteMode ? (
+              <>
+                <WebControls />
+                <ControllerVisualization demoMode={true} />
+              </>
+            ) : firstPerson ? (
+              <FirstPersonControls enabled={true} />
+            ) : (
+              <OrbitControls maxPolarAngle={Math.PI / 2} />
+            )}
           </Canvas>
 
           {/* Buttons - Bottom Right */}

@@ -11,8 +11,8 @@ interface UseLocomotionOptions {
 /**
  * Smooth Locomotion Hook for Meta Quest left joystick
  * Maps left joystick to forward/backward/strafe movement relative to camera direction
- * - gamepad.axes[3]: forward/backward (negative = forward, positive = backward)
- * - gamepad.axes[2]: strafe (negative = left, positive = right)
+ * - gamepad.axes[1]: forward/backward
+ * - gamepad.axes[0]: strafe (left/right)
  */
 export function useLocomotion({
   dolly,
@@ -30,54 +30,71 @@ export function useLocomotion({
 
     const updateLocomotion = () => {
       try {
-        const xrSession = (window as any).navigator?.xr?.getSession?.();
-        
-        if (!xrSession || !xrSession.inputSources) {
+        if (typeof navigator === "undefined" || !navigator.getGamepads) {
           animationFrameId = requestAnimationFrame(updateLocomotion);
           return;
         }
 
-        // Find left controller
-        let leftController: XRInputSource | null = null;
-        for (const source of xrSession.inputSources) {
-          if (source.handedness === "left" && source.gamepad) {
-            leftController = source;
-            break;
+        // Get all gamepads (XR controllers appear as gamepads)
+        const gamepads = navigator.getGamepads();
+        if (!gamepads) {
+          animationFrameId = requestAnimationFrame(updateLocomotion);
+          return;
+        }
+
+        // Find left controller - usually the first gamepad with XR standard mapping
+        let leftGamepad: Gamepad | null = null;
+        for (let i = 0; i < gamepads.length; i++) {
+          const gamepad = gamepads[i];
+          if (gamepad && gamepad.mapping === "xr-standard") {
+            // In Meta Quest, left controller is usually index 0
+            if (i === 0 || gamepad.hand === "left") {
+              leftGamepad = gamepad;
+              break;
+            }
           }
         }
 
-        if (leftController && leftController.gamepad) {
-          const gamepad = leftController.gamepad;
-          
+        // Fallback: grab first available gamepad with axes
+        if (!leftGamepad && gamepads[0] && gamepads[0].axes && gamepads[0].axes.length >= 2) {
+          leftGamepad = gamepads[0];
+        }
+
+        if (leftGamepad && leftGamepad.axes && leftGamepad.axes.length >= 2) {
           // Get joystick axes (left thumbstick)
-          const forwardAxis = gamepad.axes[3] || 0;    // Y-axis (forward/backward)
-          const strafeAxis = gamepad.axes[2] || 0;     // X-axis (left/right)
+          const strafeAxis = leftGamepad.axes[0] || 0;      // X-axis (left/right)
+          const forwardAxis = -(leftGamepad.axes[1] || 0);  // Y-axis inverted (forward/backward)
 
-          // Get camera direction (relative to world)
-          camera.getWorldDirection(directionRef.current);
+          // Deadzone threshold
+          const magnitude = Math.sqrt(forwardAxis * forwardAxis + strafeAxis * strafeAxis);
           
-          // Remove Y component so movement is horizontal only
-          directionRef.current.y = 0;
-          directionRef.current.normalize();
+          if (magnitude > 0.15) {
+            // Get camera forward direction  
+            camera.getWorldDirection(directionRef.current);
+            
+            // Keep movement horizontal
+            directionRef.current.y = 0;
+            directionRef.current.normalize();
 
-          // Create strafe direction (perpendicular to forward)
-          const strafeDirection = new THREE.Vector3()
-            .crossVectors(new THREE.Vector3(0, 1, 0), directionRef.current)
-            .normalize();
+            // Create right direction perpendicular to forward
+            const rightDirection = new THREE.Vector3()
+              .crossVectors(directionRef.current, new THREE.Vector3(0, 1, 0))
+              .normalize();
 
-          // Calculate velocity based on joystick input
-          velocityRef.current
-            .copy(directionRef.current)
-            .multiplyScalar(-forwardAxis * speed)
-            .addScaledVector(strafeDirection, strafeAxis * speed);
+            // Calculate movement relative to where camera is looking
+            velocityRef.current
+              .copy(directionRef.current)
+              .multiplyScalar(forwardAxis * speed)
+              .addScaledVector(rightDirection, strafeAxis * speed);
 
-          // Apply movement to dolly
-          dolly.position.addScaledVector(velocityRef.current, 1);
+            // Move dolly (camera container)
+            dolly.position.addScaledVector(velocityRef.current, 1);
+          }
         }
 
         animationFrameId = requestAnimationFrame(updateLocomotion);
       } catch (error) {
-        // Silently handle errors
+        // Silently handle errors and continue
         animationFrameId = requestAnimationFrame(updateLocomotion);
       }
     };

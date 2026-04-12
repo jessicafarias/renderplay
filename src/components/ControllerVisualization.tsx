@@ -66,13 +66,13 @@ export default function ControllerVisualization({ demoMode = false }: Controller
   return (
     <>
       {/* Left Controller */}
-      <group ref={leftRef} visible={false}>
+      <group ref={leftRef} visible={demoMode}>
         <mesh geometry={cylinderGeom} material={leftMaterial} />
         <mesh geometry={sphereGeom} material={new THREE.MeshBasicMaterial({ color: "#ff8787" })} position={[0, -0.08, 0]} />
       </group>
 
       {/* Right Controller */}
-      <group ref={rightRef} visible={false}>
+      <group ref={rightRef} visible={demoMode}>
         <mesh geometry={cylinderGeom} material={rightMaterial} />
         <mesh geometry={sphereGeom} material={new THREE.MeshBasicMaterial({ color: "#6ee7de" })} position={[0, -0.08, 0]} />
       </group>
