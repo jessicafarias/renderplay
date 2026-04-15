@@ -151,7 +151,7 @@ export default function VRPage() {
             <PerspectiveCamera makeDefault position={[0, 1.6, 3]} near={0.01} far={1000} />
             <Scene />
             <Suspense fallback={null}>
-              <Model path={current.path} scale={current.scale} />
+              <Model path={current.path} scale={current.scale} position={current.position} rotation={current.rotation} />
             </Suspense>
           </group>
 

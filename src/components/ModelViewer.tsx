@@ -170,7 +170,7 @@ export default function ModelViewer() {
           <XR store={xrStore}>
             <Scene />
             <Suspense fallback={null}>
-              <Model path={current.path} scale={current.scale} />
+              <Model path={current.path} scale={current.scale} position={current.position} rotation={current.rotation} />
             </Suspense>
             {firstPerson
               ? <FirstPersonControls enabled={true} />

@@ -176,7 +176,7 @@ export default function ModelViewer() {
           >
             <Scene />
             <Suspense fallback={null}>
-              <Model path={current.path} scale={current.scale} />
+              <Model path={current.path} scale={current.scale} position={current.position} rotation={current.rotation} />
             </Suspense>
             {websiteMode ? (
               <>

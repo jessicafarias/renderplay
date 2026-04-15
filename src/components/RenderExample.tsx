@@ -43,7 +43,7 @@ const RenderExample = () => {
           <directionalLight position={[-5, 5, 5]} intensity={2} />
 
           <Suspense fallback={null}>
-            <Model path={current.path} scale={current.scale} />
+            <Model path={current.path} scale={current.scale} position={current.position} rotation={current.rotation} />
           </Suspense>
 
           <OrbitControls 
