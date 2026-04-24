@@ -18,21 +18,21 @@ export default function Model({ path, scale, position = [0, 0, 0], rotation = [0
   const gltf = useGLTF(path);
   const { actions, names } = useAnimations(gltf.animations, gltfRef);
 
-  const payaso1 = useGLTF("/models/roadkill/presentador.gltf");
+  // const payaso1 = useGLTF("/models/roadkill/presentador.gltf");
   const payasoGroupRef = useRef<Group>(null);
-  const { actions: payasoActions, names: payasoNames } = useAnimations(payaso1.animations, payasoGroupRef);
+  // const { actions: payasoActions, names: payasoNames } = useAnimations(payaso1.animations, payasoGroupRef);
 
   useEffect(() => {
-    payaso1.scene.traverse((child: Object3D) => {
-      const c = child as any;
-      if (c.isMesh) {
-        c.material.transparent = false;
-        c.material.opacity = 1;
-        c.material.depthWrite = true;
-        c.material.alphaTest = 0;
-        c.material.needsUpdate = true;
-      }
-    });
+    // payaso1.scene.traverse((child: Object3D) => {
+    //   const c = child as any;
+    //   if (c.isMesh) {
+    //     c.material.transparent = false;
+    //     c.material.opacity = 1;
+    //     c.material.depthWrite = true;
+    //     c.material.alphaTest = 0;
+    //     c.material.needsUpdate = true;
+    //   }
+    // });
 
     gltf.scene.traverse((child: Object3D) => {
       const c = child as any;
@@ -44,7 +44,7 @@ export default function Model({ path, scale, position = [0, 0, 0], rotation = [0
         c.material.needsUpdate = true;
       }
     });
-  }, [gltf, payaso1]);
+  }, [gltf]);
 
   useEffect(() => {
     if (names.length && actions[names[0]]) {
@@ -58,26 +58,26 @@ export default function Model({ path, scale, position = [0, 0, 0], rotation = [0
     }
   }, [actions, names]);
 
-  useEffect(() => {
-    if (payasoNames.length && payasoActions[payasoNames[23]]) {
-      const paction = payasoActions[payasoNames[23]]!;
-      paction.reset();
-      paction.setLoop(LoopRepeat, Infinity);
-      paction.play();
-      return () => {
-        paction.stop();
-      };
-    }
-  }, [payasoNames, payasoActions]);
+  // useEffect(() => {
+  //   if (payasoNames.length && payasoActions[payasoNames[23]]) {
+  //     const paction = payasoActions[payasoNames[23]]!;
+  //     paction.reset();
+  //     paction.setLoop(LoopRepeat, Infinity);
+  //     paction.play();
+  //     return () => {
+  //       paction.stop();
+  //     };
+  //   }
+  // }, [payasoNames, payasoActions]);
 
   return (
     <group ref={group}>
       <group ref={gltfRef} rotation={rotation} position={position}>
         <primitive object={gltf.scene} scale={scale} />
       </group>
-      <group ref={payasoGroupRef}>
+      {/* <group ref={payasoGroupRef}>
         <primitive object={payaso1.scene} scale={1.5} position={[2, 0, 0]} rotation={[0, -Math.PI/2, 0]} />
-      </group>
+      </group> */}
       {/* <ambientLight intensity={1} /> */}
     </group>
   );
